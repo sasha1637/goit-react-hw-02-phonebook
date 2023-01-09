@@ -9,15 +9,22 @@ zapoznania się z ustawieniami dodatkowych opcji
 
 ## Utworzenie repozytorium zgodnie z szablonem
 
-Wykorzystaj to repozytorium organizacji GoIT jako szablon do utworzenia repozytorium własnego projektu. W tym celu kliknij na przycisk `"Use this template"` i wybierz opcję `"Create a new repository"`, jak pokazano na rysunku.
+Wykorzystaj to repozytorium organizacji GoIT jako szablon do utworzenia
+repozytorium własnego projektu. W tym celu kliknij na przycisk
+`"Use this template"` i wybierz opcję `"Create a new repository"`, jak pokazano
+na rysunku.
 
 ![Creating repo from a template step 1](./assets/template-step-1.png)
 
-W następnym kroku otworzy się strona utworzenia nowego repozytorium. Wypełnij pole nazwy i upewnij się, że repozytorium jest publiczne, a następnie kliknij na przycisk `"Create repository from template"`.
+W następnym kroku otworzy się strona utworzenia nowego repozytorium. Wypełnij
+pole nazwy i upewnij się, że repozytorium jest publiczne, a następnie kliknij na
+przycisk `"Create repository from template"`.
 
 ![Creating repo from a template step 2](./assets/template-step-2.png)
 
-Teraz masz własne repozytorium projektu, ze strukturą folderów i plików jak w szablonie. Pracuj z nim jak z innymi repozytoriami, klonuj je na swój komputer, pisz kod, rób commity i wysyłaj na GitHub.
+Teraz masz własne repozytorium projektu, ze strukturą folderów i plików jak w
+szablonie. Pracuj z nim jak z innymi repozytoriami, klonuj je na swój komputer,
+pisz kod, rób commity i wysyłaj na GitHub.
 
 ## Przygotowanie do pracy
 
@@ -93,10 +100,10 @@ końcu łańcucha jest obowiązkowy.
 
 ![How it works](./assets/how-it-works.png)
 
-1. Po każdym pushu do gałęzi `main` repozytorium GitHub, uruchamia się specjalny
-   skrypt (GitHub Action) z pliku `.github/workflows/deploy.yml`.
-2. Wszystkie pliki repozytorium kopiują się na serwer, gdzie projekt zostaje
-   zainicjowany i przechodzi pracę lintera oraz zbudowanie przed deploymentem.
-3. Jeżeli wszystkie kroki zakończyły się sukcesem, zbudowana wersja produkcyjna
-   plików projektu wysyłana jest do gałęzi `gh-pages`. W przeciwnym razie, w
-   logu wykonania skryptu zostanie wskazane z czym jest problem.
+1.  Po każdym pushu do gałęzi `main` repozytorium GitHub, uruchamia się
+    specjalny skrypt (GitHub Action) z pliku `.github/workflows/deploy.yml`.
+2.  Wszystkie pliki repozytorium kopiują się na serwer, gdzie projekt zostaje
+    zainicjowany i przechodzi pracę lintera oraz zbudowanie przed deploymentem.
+3.  Jeżeli wszystkie kroki zakończyły się sukcesem, zbudowana wersja produkcyjna
+    plików projektu wysyłana jest do gałęzi `gh-pages`. W przeciwnym razie, w
+    logu wykonania skryptu zostanie wskazane z czym jest problem. if
