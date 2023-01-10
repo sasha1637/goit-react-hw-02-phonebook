@@ -3,7 +3,7 @@ import { Input } from 'components/Filter/Filter.styled';
 export default function Filter({ value, onChange }) {
   return (
     <Input
-      autoComplete="false"
+      autoComplete="off"
       onChange={onChange}
       type="name"
       name="filter"

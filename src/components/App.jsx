@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import styled from 'styled-components';
+import { Wrapper, Title, Message } from 'components/App.styled';
 import 'react-toastify/dist/ReactToastify.css';
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
+import { createGlobalStyle } from 'styled-components';
 export class App extends Component {
   state = {
     contacts: [],
@@ -19,6 +20,7 @@ export class App extends Component {
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
     const normalizeFilter = filter.toLowerCase();
+
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizeFilter)
     );
@@ -35,12 +37,12 @@ export class App extends Component {
 
   AddContact = data => {
     const { contacts } = this.state;
-    const contact = data;
-    const { name: NewNameContact, number: NewNumberContact } = contact;
+    const { name, number: NewNumber } = data;
+    const normalizeName = name.toLowerCase();
     if (
       contacts.find(
         ({ name, number }) =>
-          name === NewNameContact || number === NewNumberContact
+          name.toLowerCase() === normalizeName || number === NewNumber
       )
     ) {
       toast(
@@ -48,7 +50,7 @@ export class App extends Component {
       );
     } else {
       this.setState(({ contacts }) => ({
-        contacts: [contact, ...contacts],
+        contacts: [data, ...contacts],
       }));
     }
   };
@@ -56,50 +58,26 @@ export class App extends Component {
     return (
       <Wrapper>
         <h1>Phonebook</h1>
-        <ToastContainer
-          position="top-center"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
-        <ContactForm onSubmit={this.AddContact}></ContactForm>
+        <ToastContainer />
 
-        <h2>Contacts</h2>
-        <Filter value={this.state.filter} onChange={this.Filter} />
-        <ContactList
-          contacts={this.getVisibleContacts()}
-          ContactDelete={this.ContactDelete}
-        />
+        <ContactForm onSubmit={this.AddContact}></ContactForm>
+        <Title>Contacts</Title>
+        {this.state.contacts.length ? (
+          <>
+            <Filter value={this.state.filter} onChange={this.Filter} />
+            {this.getVisibleContacts().length ? (
+              <ContactList
+                contacts={this.getVisibleContacts()}
+                ContactDelete={this.ContactDelete}
+              />
+            ) : (
+              <Message>No find contact</Message>
+            )}
+          </>
+        ) : (
+          <Message>No contact</Message>
+        )}
       </Wrapper>
     );
   }
 }
-const Wrapper = styled.div`
-  padding: 20px;
-`;
-
-// (!this.getVisibleContacts().length) {
-
-//          toast.error('🦄 Oops, unsuccessful search', {
-//            position: 'top-center',
-//            autoClose: true,
-//            hideProgressBar: false,
-//            closeOnClick: true,
-//            pauseOnHover: true,
-//            draggable: true,
-//            progress: undefined,
-//            theme: 'dark',
-//          });
-
-//     }
-
-//     if (!this.state.contacts.length) { toast.success(`Contact list empty`, {
-//     position: 'top-center', autoClose: 3000, hideProgressBar: false,
-//     closeOnClick: true, pauseOnHover: true, draggable: true, progress:
-//     undefined, theme: 'dark', }); }

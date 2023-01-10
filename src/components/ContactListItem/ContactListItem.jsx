@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
-import { Item, Button } from 'components/ContactList/ContactListItem.styled';
+import {
+  Item,
+  Button,
+} from 'components/ContactListItem/ContactListItem.styled';
 export function ContactListItem({ data, ContactDelete }) {
   const { id, name, number } = data;
   return (
