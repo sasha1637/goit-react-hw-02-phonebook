@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
-import { createGlobalStyle } from 'styled-components';
 export class App extends Component {
   state = {
     contacts: [],
