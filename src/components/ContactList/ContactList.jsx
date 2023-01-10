@@ -1,32 +1,39 @@
 import PropTypes from 'prop-types';
-import { Ul, Item } from 'components/ContactList/ContactList.styled';
+import { List } from 'components/ContactList/ContactList.styled';
+import { ContactListItem } from 'components/ContactList/ContactListItem';
+import { toast } from 'react-toastify';
 export default function ContactList({ contacts, ContactDelete }) {
   return (
-    <Ul>
-      {contacts.map(({ id, name, number }) => {
-        return (
-          <Item key={id}>
-            {name}:{number}
-            <button
-              onClick={() => {
-                ContactDelete(id);
-              }}
-              type="button"
-            >
-              Delete
-            </button>
-          </Item>
-        );
-      })}
-    </Ul>
+    <List>
+      {!contacts.length
+        ? toast.success(`Contact list empty`, {
+            position: 'top-center',
+            autoClose: true,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+          })
+        : contacts.map(contact => {
+            return (
+              <ContactListItem
+                key={contact.id}
+                data={contact}
+                ContactDelete={ContactDelete}
+              />
+            );
+          })}
+    </List>
   );
 }
 ContactList.protoTypes = {
   contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      number: PropTypes.number,
+    PropTypes.exact({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.number.isRequired,
     })
   ),
   ContactDelete: PropTypes.func.isRequired,

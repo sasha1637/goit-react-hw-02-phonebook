@@ -2,19 +2,10 @@ import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
-
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
-
-export const App = () => {
-  return (
-    <>
-      <PhoneBook />
-    </>
-  );
-};
-class PhoneBook extends Component {
+export class App extends Component {
   state = {
     contacts: [],
     filter: '',

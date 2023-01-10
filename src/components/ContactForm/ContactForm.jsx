@@ -5,44 +5,36 @@ import {
   Input,
   Button,
 } from 'components/ContactForm/ContactForm.styled';
-import { Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
-let schema = yup.object().shape({
-  name: yup.string().min(2).required(),
-  number: yup.number().min(9).required(),
-});
 export default function ContactForm({ onSubmit }) {
-  const nameId = nanoid();
-  const numberId = nanoid();
   const id = nanoid();
   const addContact = (values, { resetForm }) => {
     onSubmit({ id, ...values });
     resetForm();
   };
   return (
-    <Formik
-      initialValues={{ name: '', number: '' }}
-      onSubmit={addContact}
-      validationSchema={schema}
-    >
+    <Formik initialValues={{ name: '', number: '' }} onSubmit={addContact}>
       <Forms autoComplete="off">
-        <Label htmlFor={nameId}>
-          Name<Input type="name" name="name" id={nameId}></Input>
+        <Label>
+          Name
+          <Input
+            type="name"
+            name="name"
+            pattern="^[/\w/]{3,15}$"
+            title="The name must contain from 3 to 15 characters"
+          ></Input>
         </Label>
-        <ErrorMessage name="name" component="p" />
-        <Label htmlFor={numberId}>
+        <Label>
           Number
           <Input
             type="tel"
             name="number"
-            id={numberId}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           ></Input>
         </Label>
-        <ErrorMessage name="number" component="p" />
         <Button type="submit">Submit</Button>
       </Forms>
     </Formik>
