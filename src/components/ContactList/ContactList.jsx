@@ -19,7 +19,7 @@ export default function ContactList({ contacts, ContactDelete }) {
 ContactList.protoTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       number: PropTypes.number.isRequired,
     })

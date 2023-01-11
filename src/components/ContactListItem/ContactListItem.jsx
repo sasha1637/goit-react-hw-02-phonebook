@@ -21,7 +21,7 @@ export function ContactListItem({ data, ContactDelete }) {
 }
 ContactListItem.protoTypes = {
   data: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
   }),
