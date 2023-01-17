@@ -5,11 +5,27 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
+const LS_KEY = 'Contact';
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+  componentDidMount() {
+    const contacts = localStorage.getItem(LS_KEY);
+    const parsedContact = JSON.parse(contacts);
+    if (parsedContact) {
+      this.setState({
+        contacts: parsedContact,
+      });
+    }
+  }
+  componentDidUpdated(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+    }
+  }
+
   Filter = e => {
     const { value } = e.target;
     this.setState({
@@ -74,9 +90,10 @@ export class App extends Component {
             )}
           </>
         ) : (
-          toast.success(
+          <Message>No contact</Message>
+          /* toast.success(
             `После этого сообщения рендериться количество toast которые были вызваны `
-          )
+          ) */
         )}
       </Wrapper>
     );
