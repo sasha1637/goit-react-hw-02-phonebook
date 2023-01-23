@@ -89,9 +89,6 @@ export class App extends Component {
           </>
         ) : (
           <Message>No contact</Message>
-          /* toast.success(
-            `После этого сообщения рендериться количество toast которые были вызваны `
-          ) */
         )}
       </Wrapper>
     );
